@@ -19,3 +19,7 @@ ul.mainmenu li .last{
 float:right;
 }
 ul.mainmenu a {color:#8785A2;}
+
+.flash {padding:10px;}
+.flash.success{ border: 1px solid #ADFF2F;background:#000000}
+.flash.error{ border: 1px solid #FF0000;background:	#000000}

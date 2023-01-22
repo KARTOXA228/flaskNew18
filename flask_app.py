@@ -26,7 +26,7 @@ def get_db():
 
     @app.route('/update_server', methods=['POST','GET'])
     def webhook():
-        if request.method = 'POST':
+        if request.method == 'POST':
             repo = git.Repo('/home/KARTOXA/flaskNew18')
             origin = repo.remotes.origin
             origin.pull()
@@ -105,6 +105,9 @@ def index():  # put application's code here
 
     return render_template('index.html', name=car['name'][0], foto=car['name'][1], title='1', menu=database.getMenu())
     #return render_template('index.html')
+@app.route('/aaa')
+def aaa():  # put application's code here
+    return ''' <h2> Александр Твардовский'''
 
 @app.route('/petya/')
 def petya():  # put application's code here

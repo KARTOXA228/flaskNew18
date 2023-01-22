@@ -1,4 +1,4 @@
-# taskkill /f /im python.exe
+# taskkill /f /im python.exepy
 import os.path
 import sqlite3
 
@@ -6,6 +6,7 @@ from flask import Flask, render_template, flash, redirect, session, url_for, req
 
 from data_base import FDataBase
 from forms import LoginForm
+import git
 
 from config import Config
 
@@ -21,6 +22,18 @@ def get_db():
     if not hasattr(g, 'link_db'):
         g.link_db = connect_db()
         return g.link_db
+
+
+    @app.route('/update_server', methods=['POST','GET'])
+    def webhook():
+        if request.method = 'POST':
+            repo = git.Repo('/home/KARTOXA/flaskNew18')
+            origin = repo.remotes.origin
+            origin.pull()
+            return 'сайт обновился', 200
+        else:
+            return 'возникла ошибка', 400
+
 
 @app.teardown_appcontext
 def close_db(error):

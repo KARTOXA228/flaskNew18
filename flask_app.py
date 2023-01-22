@@ -57,9 +57,9 @@ and request.form['psw'] == users_passwords[request.form['username']]:
 def post():
    db = get_db()
    data_base = FDataBase(db)
-   if request.method = 'POST':
+   if request.method == 'POST':
        if len(request.form['name']) > 3 and len(request.form['post']) > 10:
-           res = data_base.add.Post(request.form['name']),request.form['post'])
+           res = data_base.add.Post(request.form['name'],request.form['post'])
            if not res:
                flash('Ошибка добавления статьи',category='error')
            else:
@@ -70,7 +70,7 @@ def post():
            return render_template('post.html',title='добавить статью',menu=data_base.getMenu())
 
 
-    return render_template('post.html', title='новый пост');
+   return render_template('post.html', title='новый пост');
 
 
 
@@ -91,7 +91,7 @@ def index():  # put application's code here
                     'https://libertycity.ru/uploads/download/gta5_bugatti/fulls/j4q9k776k31rt5p2jnd2823s63/15043684584016_f61541-1.jpg')}
 
     return render_template('index.html', name=car['name'][0], foto=car['name'][1], title='1', menu=database.getMenu())
-
+    #return render_template('index.html')
 
 @app.route('/petya/')
 def petya():  # put application's code here

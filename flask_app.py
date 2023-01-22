@@ -24,15 +24,15 @@ def get_db():
         return g.link_db
 
 
-    @app.route('/update_server', methods=['POST','GET'])
-    def webhook():
-        if request.method == 'POST':
-            repo = git.Repo('/home/KARTOXA/flaskNew18')
-            origin = repo.remotes.origin
-            origin.pull()
-            return 'сайт обновился', 200
-        else:
-            return 'возникла ошибка', 400
+@app.route('/update_server', methods=['POST','GET'])
+def webhook():
+    if request.method == 'POST':
+        repo = git.Repo('/home/KARTOXA/flaskNew18')
+        origin = repo.remotes.origin
+        origin.pull()
+        return 'сайт обновился', 200
+    else:
+        return 'возникла ошибка', 400
 
 
 @app.teardown_appcontext

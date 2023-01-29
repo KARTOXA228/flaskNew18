@@ -110,8 +110,8 @@ def aaa():  # put application's code here
     return ''' <h2> Александр Твардовский'''
 
 
-@app.route('/bbb')
-def bbb():  # put application's code here
+@app.route('/test')
+def test():  # put application's code here
     return ''' <h2> test'''
 
 

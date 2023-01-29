@@ -109,6 +109,13 @@ def index():  # put application's code here
 def aaa():  # put application's code here
     return ''' <h2> Александр Твардовский'''
 
+
+@app.route('/bbb')
+def bbb():  # put application's code here
+    return ''' <h2> test'''
+
+
+
 @app.route('/petya/')
 def petya():  # put application's code here
     return ''' <h2> Александр Твардовский

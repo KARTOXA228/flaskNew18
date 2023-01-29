@@ -66,24 +66,44 @@ and request.form['psw'] == users_passwords[request.form['username']]:
 
     return render_template('login_2var.html', title='Авторизация пользователя')
 
+
 @app.route('/post', methods=['POST', 'GET'])
 def post():
-   db = get_db()
-   data_base = FDataBase(db)
-   if request.method == 'POST':
-       if len(request.form['name']) > 3 and len(request.form['post']) > 10:
-           res = data_base.add.Post(request.form['name'],request.form['post'])
-           if not res:
-               flash('Ошибка добавления статьи',category='error')
-           else:
-               flash('Статья добавлено успешно',category='succes')
-       else:
-           flash('Ошибка добавления статьи',category='error')
+    db = get_db()
+    database = FDataBase(db)
+    if request.method == 'POST':
+        if len(request.form['name']) > 3 and len(request.form['post']) > 10:
+            res = database.addPost(request.form['name'], request.form['post'])
+            if not res:
+                flash('Ошибка добавления статьи', category='error')
+            else:
+                flash('Статья добавлена успешно', category='success')
+        else:
+            flash('Ошибка добавления статьи', category='error')
 
-           return render_template('post.html',title='добавить статью',menu=data_base.getMenu())
+    return render_template('post.html', title='Добавить статью', menu=database.getMenu())
 
 
-   return render_template('post.html', title='новый пост');
+
+@app.route('/allposts')
+def allposts():  # put application's code here
+    db = get_db()
+    database = FDataBase(db)
+    return render_template('allposts.html', title='Cписок постов', menu=database.getMenu(),
+                           posts=database.getPostAnnoce())
+
+
+@app.route('/posts/<int:id_post>')
+def showPost(id_post):  # put application's code here
+    db = get_db()
+    database = FDataBase(db)
+    title, aticle = database.getPost(id_post)
+    if not title:
+        abort(404)
+    return render_template('aticle.html', title='title', menu=database.getMenu(), post=aticle)
+
+
+
 
 
 
